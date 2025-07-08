@@ -12,22 +12,16 @@ import { setAuswer } from "@/redux/features/quizSlice";
 
 function Qutestion() {
   const dispatch = useAppDispatch();
-  const { question, currentQuestionIndex, userAnswer } = useAppSelector(
+  const { questions, currentQuestionIndex, userAnswer } = useAppSelector(
     (state) => state.quiz
   );
-  const currestQuetion = question[currentQuestionIndex];
+  const currestQuetion = questions[currentQuestionIndex];
   const currentAnswer = userAnswer[currentQuestionIndex];
 
-  const handelAnswerChange = (ans: string) => {
-    dispatch(
-      setAuswer({
-        quetionIndex: currentQuestionIndex,
-        answer: ans,
-      })
-    );
- 
-  };
 
+  const handelAnswerChange = (ans: string) => {
+    dispatch(setAuswer({ questionIndex: currentQuestionIndex, answer: ans }));
+  };
   return (
     <div className="flex justify-center">
       <Card className="w-[450px]">
@@ -41,7 +35,7 @@ function Qutestion() {
           <div>
             {currestQuetion.options.map((option, index) => (
               <Button
-              variant={option === currentAnswer ? "default":"outline"}
+                variant={option === currentAnswer ? "default" : "outline"}
                 onClick={() => handelAnswerChange(option)}
                 className="w-full mt-3"
                 size={"lg"}
