@@ -1,3 +1,3 @@
 export default function Home() {
-  return <div>Qutestion</div>;
+  return <div className="text-2xl">Qutestion</div>;
 }
